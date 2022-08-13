@@ -13,22 +13,24 @@ Setup followings.
 
 ```bash
 poetry init --python ^3.9
-poetry add isort black flake8 mypy pytest pytest-cov --dev
-echo -e '\n[tool.black]\nline-length = 120' >> pyproject.toml
-echo -e '\n[tool.isort]\nprofile = "black"'  >> pyproject.toml
-echo -e '\n[tool.pytest.ini_options]\nmarkers = ["unit", "integration"]'  >> pyproject.toml
-echo -e '[flake8]\nextend-ignore = E203, F401\nmax-line-length = 120' >> .flake8
+poetry add pre-commit pytest pytest-cov --dev
+poetry run pre-commit install
+```
 
+pre-commitの設定を変更した場合、以下のコマンドで反映する。
+
+```bash
+poetry run pre-commit autoupdate
 ```
 
 
 ## Lint and Format
 
+コミットするとpre-commit hookで自動実行される。
+手動で実行する場合は以下。
+
 ```bash
-poetry run isort .
-poetry run black .
-poetry run flake8 .
-poetry run mypy .
+poetry run pre-commit run --all-files
 ```
 
 ## Test
