@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "python-my-template"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+isort = "^5.10.1"
+black = "^22.6.0"
+flake8 = "^5.0.4"
+mypy = "^0.971"
+pytest = "^7.1.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 120
+
+[tool.isort]
+profile = "black"
+
+[tool.pytest.ini_options]
+markers = ["unit", "integration"]
