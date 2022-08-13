@@ -1,3 +1,4 @@
+[![CI](https://github.com/y-megane/python-my-template/actions/workflows/python-ci.yml/badge.svg)](https://github.com/y-megane/python-my-template/actions/workflows/python-ci.yml)
 # python-my-template
 My python template repository with lint, format, testing and ci
 
