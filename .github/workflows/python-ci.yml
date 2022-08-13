@@ -10,6 +10,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install dependencies
         uses: ./.github/actions/setup-poetry
+        inputs:
+          python-version: 3.9
       - name: Run flake8
         run: poetry run flake8 .
 
