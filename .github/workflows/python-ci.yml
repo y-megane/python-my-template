@@ -3,52 +3,34 @@ on:
   push:
 
 jobs:
-  RunFlake8:
+  Lint:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v2
-      - name: Install dependencies
-        uses: ./.github/actions/setup-poetry
-      - name: Run flake8
-        run: poetry run flake8 .
 
-  RunIsort:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install dependencies
-        uses: ./.github/actions/setup-poetry
-      - name: Run isort
-        run: poetry run isort **/*.py -c
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
 
-  RunBlack:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install dependencies
-        uses: ./.github/actions/setup-poetry
-      - name: Run black
-        run: poetry run black . --check
+      - name: Install poetry and dependencies
+        run: python -m pip install poetry && poetry install
 
-  RunMypy:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install dependencies
-        uses: ./.github/actions/setup-poetry
-      - name: Run mypy
-        run: poetry run mypy .
+      - name: Lint
+        run: poetry run pre-commit run --all-files
 
-  RunUnitTest:
+  UnitTest:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v2
-      - name: Install dependencies
-        uses: ./.github/actions/setup-poetry
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Install poetry and dependencies
+        run: python -m pip install poetry && poetry install
+
       - name: Run unit test
         run: poetry run pytest -m unit --cov
