@@ -17,23 +17,12 @@ jobs:
 
   RunIsort:
     runs-on: ubuntu-latest
-    container:
-      image: python:3.9-buster
-    timeout-minutes: 20
-    defaults:
-      run:
-        working-directory: backend
-
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v2
-
-      - name: install dependencies
-        run: |
-          pip install -U pip && pip install poetry
-          poetry config virtualenvs.create false
-          poetry install
-
-      - name: run isort
+      - name: Install dependencies
+        uses: ./.github/actions/setup-poetry
+      - name: Run isort
         run: isort **/*.py -c
 
   RunBlack:
