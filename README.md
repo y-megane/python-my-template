@@ -20,3 +20,19 @@ echo -e '\n[tool.pytest.ini_options]\nmarkers = ["unit", "integration"]'  >> pyp
 echo -e '[flake8]\nextend-ignore = E203, F401\nmax-line-length = 120' >> .flake8
 
 ```
+
+
+## Lint and Format
+
+```bash
+poetry run isort .
+poetry run black .
+poetry run flake8 .
+poetry run mypy .
+```
+
+## Test
+
+```bash
+poetry run pytest -m unit --cov
+```
