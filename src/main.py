@@ -1,8 +1,7 @@
-from logging import getLogger
 import os
+from logging import getLogger
 
 from fizz.buzz import fizzbuzz
-
 
 LOG_LEVEL = os.environ.get("LOG_LEVEL", "INFO")
 logging = getLogger(__name__)
