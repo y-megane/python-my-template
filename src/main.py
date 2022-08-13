@@ -1,15 +1,23 @@
-import logging
-import logging.config
 import os
+import sys
+
+from loguru import logger
 
 # logging.getLoggerを呼ぶモジュールより先にimportする必要あり
-import config.load_log_config
 from fizz.buzz import fizzbuzz
 
-logger = logging.getLogger(__name__)
-print(os.environ.get("LOG_LEVEL"))
 LOG_LEVEL = os.environ.get("LOG_LEVEL", "INFO")
-logger.setLevel(LOG_LEVEL)
+
+logger.remove()
+# loggerはグローバルなので他モジュールでimportしても以下の設定が効いた状態になる
+FORMAT = "[{time:YYYY-MM-DD HH:mm:ss.SSSZ} {level} {module}:{line}] {message}"
+logger.add(sys.stdout, format=FORMAT, level=LOG_LEVEL)
+
+# Colorize
+# logger.add(sys.stdout, format="{time} {level} {message}",  level=LOG_LEVEL, colorize=True)
+
+# JSON
+# logger.add(sys.stdout, format="{time} {level} {message}",  level=LOG_LEVEL, serialize=True)
 
 
 if __name__ == "__main__":

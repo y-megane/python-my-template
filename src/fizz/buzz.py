@@ -1,9 +1,8 @@
-import logging
-
-# logger = logging.getLogger("app")
-logger = logging.getLogger(__name__)
+from loguru import logger
 
 
+# 例外発生時にログ出力してくれる
+@logger.catch
 def fizzbuzz(num: int) -> str:
     if num == 1:
         logger.debug("fizzbuzz debug")

@@ -5,8 +5,8 @@ My python template repository with lint, format, testing and ci
 
 Setup followings.
 
-- Logging
-- Linting and Formating
+- Logging with loguru
+- Linting and Formating with pre-commit
 - Unit Testing with pytest
 
 ## Setup
