@@ -1,6 +1,16 @@
 # python-my-template
 My python template repository with lint, format, testing and ci
 
+## About
+
+Setup followings.
+
+- Logging
+- Linting and Formating
+- Unit Testing with pytest
+
+## Setup
+
 ```bash
 poetry init --python ^3.9
 poetry add isort black flake8 mypy pytest --dev
